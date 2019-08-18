@@ -4,6 +4,7 @@
 
 // Here we incorporate the "axios" npm package
 var axios = require("axios");
+var moment = require("moment");
 
 //OMDB
 if (process.argv[2] == "movie-this") {
@@ -36,11 +37,10 @@ axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=cod
             for (let i = 0; i < response.data.length; i++) {
             console.log("Venue: " + response.data[i].venue.name);
             console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-            console.log("Date: " + response.data[i].datetime + "\n--------");
+            console.log(moment(response.data[i].datetime).format("MM/DD/YYYY MM:HH") + "\n--------")
+            
     }  
-    
     }
-    
   }
 );
 }
