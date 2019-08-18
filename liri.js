@@ -30,13 +30,16 @@ else if (process.argv[2] == "concert-this") {
 
 axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(
   function(response) {
-    for (let i = 0; i < response.data.length; i++) {
-        console.log("Venue: " + response.data[i].venue.name);
-        console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-        console.log("Date: " + response.data[i].datetime + "\n--------");
+    if (response.data.length == 0) {
+        console.log("Oh no! This artist has no upcoming shows")
+    } else {
+            for (let i = 0; i < response.data.length; i++) {
+            console.log("Venue: " + response.data[i].venue.name);
+            console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
+            console.log("Date: " + response.data[i].datetime + "\n--------");
     }  
     
-    
+    }
     
   }
 );
