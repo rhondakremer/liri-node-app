@@ -17,11 +17,14 @@ if (process.argv[2] == "movie-this") {
     for (i = 3; i < process.argv.length; i++){
     movie.push(process.argv[i]);
     }
+    if (movie == "") {
+      movie = "Mr Nobody"
+    }
     //console.log(movie)
 
 axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy").then(
   function(response) {
-    console.log("Title: " + response.data.Title + "\nReleased: " + response.data.Released + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\nCountry: " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " +response.data.Actors);
+    console.log("------------\nTitle: " + response.data.Title + "\nReleased: " + response.data.Released + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\nCountry: " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " +response.data.Actors + "\n------------");
   }
 );
 } 
@@ -53,20 +56,17 @@ axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=cod
 // Spotify
 else if (process.argv[2] == "spotify-this-song") {
   var song = process.argv.slice(3).join(" ");
-  
+  if (song == "") {
+    song = "The Sign Ace of Base"
+  }
 //console.log(song);
 
-spotify.search({ type: 'track', query: song, limit: 1 }, function(err, data) {
+spotify.search({ type: 'track', query: song, limit: 1}, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
  
-console.log("------------\nArtist Name: " + JSON.stringify(data.tracks.items[0].artists[0].name) + "\nTrack Name: " + JSON.stringify(data.tracks.items[0]).name + "\nPreview Song: " + data.tracks.items[0].preview_url + "\nAlbum: " + JSON.stringify(data.tracks.items[0].album.name) +"\n------------");
-
-//console.log(JSON.stringify(data.tracks.items[0].artists[0].name)); 
-//console.log(JSON.stringify(data.tracks.items[0]).name);
-//console.log(data.tracks.items[0].preview_url)
-//console.log(JSON.stringify(data.tracks.items[0].album.name))
+console.log("------------\nArtist Name: " + JSON.stringify(data.tracks.items[0].artists[0].name) + "\nTrack Name: " + JSON.stringify(data.tracks.items[0].name) + "\nPreview Song: " + data.tracks.items[0].preview_url + "\nAlbum: " + JSON.stringify(data.tracks.items[0].album.name) +"\n------------");
 });
 } 
 
