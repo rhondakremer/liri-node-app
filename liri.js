@@ -1,10 +1,15 @@
-//require("dotenv").config();
-//var keys = require("./keys.js");
-//var spotify = new Spotify(keys.spotify);
 
-// Here we incorporate the "axios" npm package
+//axios
 var axios = require("axios");
+//moment (for bands)
 var moment = require("moment");
+
+//spotify
+var Spotify = require('node-spotify-api');
+require("dotenv").config();
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
+
 
 //OMDB
 if (process.argv[2] == "movie-this") {
@@ -20,6 +25,7 @@ axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy"
   }
 );
 } 
+
 //Bands in Town
 else if (process.argv[2] == "concert-this") {
     var artist = "";
@@ -44,3 +50,32 @@ axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=cod
   }
 );
 }
+// Spotify
+else if (process.argv[2] == "spotify-this-song") {
+  var song = process.argv.slice(3).join(" ");
+  
+console.log(song);
+
+spotify.search({ type: 'track', query: song, limit: 1 }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+ 
+console.log(JSON.stringify(data)); 
+});
+} 
+/*axios.get("https://rest.bandsintown.com/artists/" + song + "/events?app_id=codingbootcamp").then(
+function(response) {
+  if (song == "") {
+      console.log("Oh no! This song has no upcoming shows")
+  } else {
+          for (let i = 0; i < response.data.length; i++) {
+          console.log("Venue: " + response.data[i].venue.name);
+          console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
+          console.log(moment(response.data[i].datetime).format("MM/DD/YYYY HH:MM") + "\n--------")
+          
+  }  
+  }
+}
+); */
+
