@@ -43,7 +43,7 @@ axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=cod
             for (let i = 0; i < response.data.length; i++) {
             console.log("Venue: " + response.data[i].venue.name);
             console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-            console.log(moment(response.data[i].datetime).format("MM/DD/YYYY HH:MM") + "\n--------")
+            console.log(moment(response.data[i].datetime).format("MM/DD/YYYY HH:MM") + "\n------------")
             
     }  
     }
@@ -54,28 +54,20 @@ axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=cod
 else if (process.argv[2] == "spotify-this-song") {
   var song = process.argv.slice(3).join(" ");
   
-console.log(song);
+//console.log(song);
 
 spotify.search({ type: 'track', query: song, limit: 1 }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
  
-console.log(JSON.stringify(data)); 
+console.log("------------\nArtist Name: " + JSON.stringify(data.tracks.items[0].artists[0].name) + "\nTrack Name: " + JSON.stringify(data.tracks.items[0]).name + "\nPreview Song: " + data.tracks.items[0].preview_url + "\nAlbum: " + JSON.stringify(data.tracks.items[0].album.name) +"\n------------");
+
+//console.log(JSON.stringify(data.tracks.items[0].artists[0].name)); 
+//console.log(JSON.stringify(data.tracks.items[0]).name);
+//console.log(data.tracks.items[0].preview_url)
+//console.log(JSON.stringify(data.tracks.items[0].album.name))
 });
 } 
-/*axios.get("https://rest.bandsintown.com/artists/" + song + "/events?app_id=codingbootcamp").then(
-function(response) {
-  if (song == "") {
-      console.log("Oh no! This song has no upcoming shows")
-  } else {
-          for (let i = 0; i < response.data.length; i++) {
-          console.log("Venue: " + response.data[i].venue.name);
-          console.log("City: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-          console.log(moment(response.data[i].datetime).format("MM/DD/YYYY HH:MM") + "\n--------")
-          
-  }  
-  }
-}
-); */
+
 
