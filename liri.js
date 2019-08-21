@@ -59,14 +59,12 @@ else if (process.argv[2] == "spotify-this-song") {
   spotifyFunction(value);
 } 
 else if (process.argv[2] == "do-what-it-says") {
-  console.log("you don't make decisions")
   var fs = require("fs");
   fs.readFile('random.txt', 'utf8', function(err, data){
 		if (err){ 
 			return console.log(err);
 		}
         var dataArr = data.split(',');
-        console.log(dataArr)
         value = dataArr[1];
         spotifyFunction(value);
 }
