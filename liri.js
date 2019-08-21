@@ -21,8 +21,11 @@ function OMDBfunction(value) {
 }
 
 function bandsInTownFunction(value) {
-  axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp").then(
-  function(response) {
+  if (value == "") {
+    value = "Dionne Warwick"
+  }
+  axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp").then 
+  (function(response) {
     if (response.data.length == 0) {
         console.log("Oh no! This artist has no upcoming shows")
     } else {
@@ -53,11 +56,12 @@ if (process.argv[2] == "movie-this") {
   OMDBfunction(value)
 } 
 else if (process.argv[2] == "concert-this") {
+  console.log(value)
   bandsInTownFunction(value)
 }
 else if (process.argv[2] == "spotify-this-song") {
   spotifyFunction(value);
-} 
+}
 else if (process.argv[2] == "do-what-it-says") {
   var fs = require("fs");
   fs.readFile('random.txt', 'utf8', function(err, data){
@@ -65,8 +69,18 @@ else if (process.argv[2] == "do-what-it-says") {
 			return console.log(err);
 		}
         var dataArr = data.split(',');
+        //console.log(dataArr[1])
         value = dataArr[1];
-        spotifyFunction(value);
+        if (dataArr[0] == "movie-this") {
+          OMDBfunction(value)
+        } 
+        else if (dataArr[0] === "concert-this") {
+          value = value.slice(1, -1);
+          bandsInTownFunction(value)
+        }
+        else if (dataArr[0] == "spotify-this-song") {
+          spotifyFunction(value);
+        } 
 }
   )}
 
