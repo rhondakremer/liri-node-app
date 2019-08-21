@@ -56,7 +56,6 @@ if (process.argv[2] == "movie-this") {
   OMDBfunction(value)
 } 
 else if (process.argv[2] == "concert-this") {
-  console.log(value)
   bandsInTownFunction(value)
 }
 else if (process.argv[2] == "spotify-this-song") {
@@ -64,23 +63,25 @@ else if (process.argv[2] == "spotify-this-song") {
 }
 else if (process.argv[2] == "do-what-it-says") {
   var fs = require("fs");
-  fs.readFile('random.txt', 'utf8', function(err, data){
+  fs.readFile( 'random.txt', 'utf8', function(err, data){
 		if (err){ 
 			return console.log(err);
 		}
-        var dataArr = data.split(',');
-        //console.log(dataArr[1])
-        value = dataArr[1];
-        if (dataArr[0] == "movie-this") {
+        var randomTxtArray = data.split(',');
+        //console.log(randomTxtArray[1])
+        value = randomTxtArray[1];
+        if (randomTxtArray[0] == "movie-this") {
           OMDBfunction(value)
         } 
-        else if (dataArr[0] === "concert-this") {
+        else if (randomTxtArray[0] === "concert-this") {
           value = value.slice(1, -1);
           bandsInTownFunction(value)
         }
-        else if (dataArr[0] == "spotify-this-song") {
+        else if (randomTxtArray[0] == "spotify-this-song") {
           spotifyFunction(value);
         } 
 }
-  )}
+  )} else {
+    console.log("You have entered an invalid command! Valid commands are movie-this, concert-this, spotify-this-song, and do-what-it-says. ")
+  }
 
