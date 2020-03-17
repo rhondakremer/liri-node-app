@@ -22,4 +22,4 @@ dotenv npm
 
 This app was developed by Rhonda Kremer to fulfill a requirement of the Trilogy Coding Bootcamp at University of Miami. 
 
-Link to video demonstration of app's functionality: https://drive.google.com/file/d/1sErD-V7ialFd_6raumz2nPpnxOQ7ZzcZ/view
+Link to video demonstration of app's functionality: <a href="https://drive.google.com/file/d/1sErD-V7ialFd_6raumz2nPpnxOQ7ZzcZ/view" target="_blank">https://drive.google.com/file/d/1sErD-V7ialFd_6raumz2nPpnxOQ7ZzcZ/view</a>
