@@ -10,14 +10,7 @@ node liri.js spotify-this-song someone like you
 node liri.js concert-this Dionne Warwick
 node liri.js movie-this Over the Top
 
-Technologies used:
-node.js
-moment.js
-OMDB API
-Bands in Town API
-axios npm
-spotify npm
-dotenv npm
+Technologies used: node.js, moment.js, OMDB API, Bands in Town API, axios npm, spotify npm, dotenv npm
 
 
 This app was developed by Rhonda Kremer to fulfill a requirement of the Trilogy Coding Bootcamp at University of Miami. 
